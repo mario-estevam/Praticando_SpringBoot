@@ -1,7 +1,6 @@
 package com.example.newproject.model;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -13,10 +12,31 @@ public class Pedido {
 
     private String nomeProduto;
     private Double valorNegociado;
-    private LocalDate dataEntrega;
+
+    public String getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(String dataEntrega) {
+        this.dataEntrega = dataEntrega;
+    }
+
+    private String dataEntrega;
     private String urlProduto;
     private String urlImagem;
     private String descricao;
+
+    public StatusPedido getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPedido status) {
+        this.status = status;
+    }
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
+
 
     public Long getId() {
         return id;
@@ -36,13 +56,6 @@ public class Pedido {
 
 
 
-    public LocalDate getDataEntrega() {
-        return dataEntrega;
-    }
-
-    public void setDataEntrega(LocalDate dataEntrega) {
-        this.dataEntrega = dataEntrega;
-    }
 
     public Double getValorNegociado() {
         return valorNegociado;
