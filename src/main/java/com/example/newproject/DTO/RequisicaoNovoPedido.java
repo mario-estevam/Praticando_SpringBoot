@@ -23,6 +23,7 @@ public class RequisicaoNovoPedido {
 
 
 
+
     public Double getValorNegociado() {return valorNegociado;}
 
     public void setValorNegociado(Double valorNegociado) {this.valorNegociado = valorNegociado;}

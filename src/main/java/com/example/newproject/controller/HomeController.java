@@ -5,14 +5,14 @@ import com.example.newproject.model.Pedido;
 import com.example.newproject.model.StatusPedido;
 import com.example.newproject.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -24,18 +24,10 @@ public class HomeController {
 
     @GetMapping
     public String home(Model model){
-
-        List<Pedido> pedidos = repository.findAll();
+        Sort sort  = Sort.by("id").ascending();
+        PageRequest paginacao = PageRequest.of(0,10, sort);
+        List<Pedido> pedidos = repository.findByStatus(StatusPedido.ENTREGUE,paginacao );
         model.addAttribute("pedidos", pedidos);
-        return "home";
-    }
-
-    @GetMapping("/{status}")
-    public String aguardando(@PathVariable("status") String status, Model model){
-
-        List<Pedido> pedidos = repository.findByStatus(StatusPedido.valueOf(status.toUpperCase()));
-        model.addAttribute("pedidos", pedidos);
-        model.addAttribute("status",status);
         return "home";
     }
 

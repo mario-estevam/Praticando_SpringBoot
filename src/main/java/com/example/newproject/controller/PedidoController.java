@@ -3,8 +3,11 @@ package com.example.newproject.controller;
 
 import com.example.newproject.DTO.RequisicaoNovoPedido;
 import com.example.newproject.model.Pedido;
+import com.example.newproject.model.User;
 import com.example.newproject.repository.PedidoRepository;
+import com.example.newproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +24,9 @@ public class PedidoController {
     @Autowired
     private PedidoRepository repository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("formulario")
     public String formulario(RequisicaoNovoPedido requisicaoNovoPedido){
 
@@ -32,9 +38,14 @@ public class PedidoController {
         if(result.hasErrors()){
             return "pedido/formulario";
         }
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
         Pedido pedido = requisicaoNovoPedido.toPedido();
+        pedido.setUser(user);
         repository.save(pedido);
         return "redirect:/home";
     }
+
+
 
 }

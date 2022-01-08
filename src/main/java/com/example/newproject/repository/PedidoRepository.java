@@ -2,16 +2,24 @@ package com.example.newproject.repository;
 
 import com.example.newproject.model.Pedido;
 import com.example.newproject.model.StatusPedido;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido,Long> {
 
-    List<Pedido> findByStatus(StatusPedido status);
+    @Cacheable("pedidosCache")
+    List<Pedido> findByStatus(StatusPedido status, Pageable sort);
+
+    @Query("select p from Pedido  p join p.user u where u.username =:username")
+    List<Pedido> findALLByUsuario(@Param("username") String username);
+    @Query("select p from Pedido  p join p.user u where u.username =:username and p.status =:status")
+    List<Pedido> findByStatusUsuario(@Param("status") StatusPedido status, @Param("username") String username);
 }
