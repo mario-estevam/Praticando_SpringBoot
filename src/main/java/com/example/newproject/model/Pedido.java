@@ -1,7 +1,10 @@
 package com.example.newproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Pedido {
@@ -23,6 +26,13 @@ public class Pedido {
 
 
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Oferta> ofertas;
+
+
+    public List<Oferta> getOfertas() {return ofertas;}
+    public void setOfertas(List<Oferta> ofertas) {this.ofertas = ofertas;}
 
     public void setStatus(StatusPedido status) {
         this.status = status;
