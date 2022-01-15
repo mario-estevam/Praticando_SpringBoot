@@ -27,6 +27,7 @@ Projeto desenvolvido com o objetivo de praticar e relembrar conceitos do framewo
   <li> Execução requisições AJAX com Axiom </li>
   <li> Tela no estilo SPA com Vue.js </li>
   <li> API Rest com Rest Controllers </li>
+ <li> Consumo de API com vue.js </li>
   <li> Paginação </li>
 </ul>
 
