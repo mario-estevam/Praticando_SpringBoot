@@ -5,6 +5,7 @@ Projeto desenvolvido com o objetivo de praticar e relembrar conceitos do framewo
 
 -> O projeto foi desenvolvido em 3 partes, sempre evoluindo conforme o estudo da tecnologia Spring, portanto foi dividido em 3 branches.
 <br/>
+<br/>
 -> Na branche master encontramos o projeto incial que foi desenvolvido utilizando o padrão MVC com Spring MVC, além disso foi feito:
 <br/>
 <ul>
