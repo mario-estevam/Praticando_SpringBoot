@@ -17,7 +17,10 @@ Projeto desenvolvido com o objetivo de praticar e relembrar conceitos do framewo
 <br/>
 -> Na branche "ComAuthentication" foi implementado a autenticação usando JDBC Authentication
 <br/>
+<br/>
 -> Na branche "ApiRest+Vuejs" foi desenvolvido o seguinte:
+<br/>
+<br/>
 <ul>
   <li> Sistema de login com Spring Security </li>
   <li> Execução requisições AJAX com Axiom </li>
